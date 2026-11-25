@@ -29,18 +29,18 @@ export async function listCommand(): Promise<void> {
   const backendSkills = skills.filter(s => s.category === 'backend');
   const designSkills = skills.filter(s => s.category === 'design');
 
-  console.log(chalk.yellow.bold('\n  [Core Flutter Engineering Skills] (9 skills):'));
+  console.log(chalk.yellow.bold(`\n  [Core Flutter Engineering Skills] (${coreSkills.length} skills):`));
   const coreRows = coreSkills.map(s => [s.name, `${s.fileCount} files`, s.description]);
   Logger.table(['Skill Name', 'Files', 'Description'], coreRows);
 
-  console.log(chalk.yellow.bold('\n  [Backend & Network Skills] (2 skills):'));
+  console.log(chalk.yellow.bold(`\n  [Backend & Network Skills] (${backendSkills.length} skills):`));
   const backendRows = backendSkills.map(s => [s.name, `${s.fileCount} files`, s.description]);
   Logger.table(['Skill Name', 'Files', 'Description'], backendRows);
 
-  console.log(chalk.yellow.bold('\n  [Design & Presentation Skills] (7 skills):'));
+  console.log(chalk.yellow.bold(`\n  [Design & Presentation Skills] (${designSkills.length} skills):`));
   const designRows = designSkills.map(s => [s.name, `${s.fileCount} files`, s.description]);
   Logger.table(['Skill Name', 'Files', 'Description'], designRows);
 
   const totalFiles = skills.reduce((acc, s) => acc + s.fileCount, 0) + rules.length + workflows.length + 2;
-  console.log(chalk.dim(`\nTotal: 18 skills, ${rules.length} rules, ${workflows.length} workflows (${totalFiles} template files bundled)\n`));
+  console.log(chalk.dim(`\nTotal: ${skills.length} skills, ${rules.length} rules, ${workflows.length} workflows (${totalFiles} template files bundled)\n`));
 }

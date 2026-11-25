@@ -34,7 +34,7 @@
 
 When developing multiple Flutter applications with Antigravity, manually copying rules, prompt instructions, workflows, and skills across repositories is repetitive and error-prone. 
 
-**Flutter Agent Kit** packages your canonical Antigravity Flutter/Dart engineering configuration into a reusable, self-contained CLI. The CLI bundles all **18 workspace skills (187 files)**, project architecture rules, feature workflows, and global engineering guidelines—enabling one-command initialization, automated updates, and complete health audits.
+**Flutter Agent Kit** packages your canonical Antigravity Flutter/Dart engineering configuration into a reusable, self-contained CLI. The CLI bundles all **27 workspace skills**, project architecture rules, feature workflows, and global engineering guidelines—enabling one-command initialization, automated updates, and complete health audits.
 
 ---
 
@@ -282,10 +282,17 @@ This manifest enables exact three-way diff evaluation:
 - `templates/.agents/rules/`:
   - `project-architecture.md`: Architectural boundaries, models, routing, UI separation.
   - `project_architecture.md`: Backward-compatibility canonical alias.
+  - `antislop.md`: Anti-slop core filter rules for UI, copy, accessibility, mobile layout, and code comments.
 - `templates/.agents/workflows/`:
   - `create-feature.md`: 5-step structured feature development lifecycle (Analyze, Plan, Implement, Verify, Report).
 
-### 2. Core Flutter Engineering Skills (9 skills)
+### 2. Core Flutter Engineering Skills (16 skills)
+- **`antislop`** (2 files): Core anti-slop filter to stop generic AI slop in UI, copy, and code.
+- **`antislop-code`** (1 file): Code comment hygiene: remove generic AI-slop comments while preserving useful ones.
+- **`antislop-copywriting`** (1 file): Anti-AI-writing copy and text filter for headlines, tone, and CTAs.
+- **`antislop-human`** (6 files): Human and accessibility filter for contrast, keyboard, focus, and states.
+- **`antislop-layoutmobile`** (1 file): Mobile layout filter for responsive grids, overflow, and tap targets.
+- **`antislop-ui`** (4 files): UI and visual filter for color, layout, components, motion, and performance.
 - **`create-feature`** (2 files): Feature scaffolding and workflow specification.
 - **`dart-model-generation`** (1 file): Typed models, serialization, and immutability standards.
 - **`flutter-accessibility`** (1 file): WCAG compliance, Semantics widget, contrast guidelines, screen readers.
@@ -295,13 +302,16 @@ This manifest enables exact three-way diff evaluation:
 - **`flutter-responsive-ui`** (1 file): Responsive layouts, breakpoints, mobile, tablet, and desktop adaptation.
 - **`flutter-testing`** (1 file): Unit, widget, golden, mockito, and integration test architectures.
 - **`git-code-review`** (1 file): PR conventions, code review checklists, architecture compliance audits.
+- **`graphify`** (10 files): Knowledge graph builder & query tool for codebase architecture, god nodes, and relationships.
 
 ### 3. Backend & Network Skills (2 skills)
 - **`firebase-engineering`** (1 file): Firebase Auth, Firestore security rules, Cloud Functions patterns.
 - **`api-integration`** (1 file): REST/HTTP client patterns, token refresh lifecycles, network error handling.
 
-### 4. Design & Presentation Skills (7 skills)
+### 4. Design & Presentation Skills (9 skills)
 - **`ui-ux-pro-max`** (71 files): Multi-stack design intelligence, data taxonomies, stack catalogs (`flutter`, `react`, `shadcn`, `swiftui`, `vue`), Python reasoning scripts, and test fixtures.
+- **`taste-skill`** (1,631 files): Anti-slop frontend & product website skill with real photos, design systems, and browser verification gates.
+- **`cinematic-ui`** (61 files): Film-directed UI/UX, scroll-driven storytelling, visual grades, screening scripts, and app-mode dashboards.
 - **`design-system`** (27 files): Token architecture, typography scale, component libraries, and documentation.
 - **`design`** (35 files): Foundations, color systems, micro-interactions, layout templates.
 - **`ui-styling`** (16 files): ThemeExtensions, ColorScheme tailoring, typography styling.

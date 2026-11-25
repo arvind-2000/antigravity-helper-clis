@@ -19,7 +19,7 @@ program
   .command('init')
   .description('Initialize a new or existing Flutter project with Antigravity rules, workflows, and skills')
   .argument('[path]', 'Target project directory (defaults to current working directory)')
-  .option('-a, --all', 'Install all 18 bundled skills without prompting')
+  .option('-a, --all', 'Install all bundled skills without prompting')
   .option('--firebase', 'Include Firebase engineering skill')
   .option('--no-firebase', 'Exclude Firebase engineering skill')
   .option('--api', 'Include API integration skill')

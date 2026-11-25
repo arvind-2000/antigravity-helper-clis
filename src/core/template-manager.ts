@@ -73,6 +73,55 @@ export const KNOWN_SKILLS: SkillDefinition[] = [
     defaultSelected: true,
     requiredForCore: true
   },
+  {
+    name: 'graphify',
+    category: 'core',
+    description: 'Knowledge graph builder & query tool for codebase architecture and relationships',
+    defaultSelected: true,
+    requiredForCore: true
+  },
+  {
+    name: 'antislop',
+    category: 'core',
+    description: 'Core anti-slop filter to stop generic AI slop in UI, copy, and code',
+    defaultSelected: true,
+    requiredForCore: true
+  },
+  {
+    name: 'antislop-code',
+    category: 'core',
+    description: 'Code comment hygiene: remove generic AI-slop comments while preserving useful ones',
+    defaultSelected: true,
+    requiredForCore: true
+  },
+  {
+    name: 'antislop-copywriting',
+    category: 'core',
+    description: 'Anti-AI-writing copy and text filter for headlines, tone, and CTAs',
+    defaultSelected: true,
+    requiredForCore: true
+  },
+  {
+    name: 'antislop-human',
+    category: 'core',
+    description: 'Human and accessibility filter for contrast, keyboard, focus, and states',
+    defaultSelected: true,
+    requiredForCore: true
+  },
+  {
+    name: 'antislop-layoutmobile',
+    category: 'core',
+    description: 'Mobile layout filter for responsive grids, overflow, and tap targets',
+    defaultSelected: true,
+    requiredForCore: true
+  },
+  {
+    name: 'antislop-ui',
+    category: 'core',
+    description: 'UI and visual filter for color, layout, components, motion, and performance',
+    defaultSelected: true,
+    requiredForCore: true
+  },
 
   // 2. Backend & Network Skills (2)
   {
@@ -88,12 +137,24 @@ export const KNOWN_SKILLS: SkillDefinition[] = [
     defaultSelected: false
   },
 
-  // 3. Design & Presentation Skills (7)
+  // 3. Design & Presentation Skills (9)
   {
     name: 'ui-ux-pro-max',
     category: 'design',
     description: 'UI/UX design intelligence, design systems, and multi-stack catalogs (self-initializing)',
     defaultSelected: true
+  },
+  {
+    name: 'taste-skill',
+    category: 'design',
+    description: 'Anti-slop frontend & product website skill with real photos, design systems, and browser gates',
+    defaultSelected: false
+  },
+  {
+    name: 'cinematic-ui',
+    category: 'design',
+    description: 'Film-directed UI/UX, scroll-driven storytelling, visual grades, and app-mode dashboards',
+    defaultSelected: false
   },
   {
     name: 'design-system',

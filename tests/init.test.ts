@@ -34,8 +34,13 @@ describe('initCommand', () => {
 
     expect(await fs.pathExists(path.join(tempDir, 'AGENTS.md'))).toBe(true);
     expect(await fs.pathExists(path.join(tempDir, '.agents', 'rules', 'project-architecture.md'))).toBe(true);
+    expect(await fs.pathExists(path.join(tempDir, '.agents', 'rules', 'antislop.md'))).toBe(true);
     expect(await fs.pathExists(path.join(tempDir, '.agents', 'workflows', 'create-feature.md'))).toBe(true);
     expect(await fs.pathExists(path.join(tempDir, '.agents', 'skills', 'flutter-testing', 'SKILL.md'))).toBe(true);
+    expect(await fs.pathExists(path.join(tempDir, '.agents', 'skills', 'graphify', 'SKILL.md'))).toBe(true);
+    expect(await fs.pathExists(path.join(tempDir, '.agents', 'skills', 'graphify', 'references', 'query.md'))).toBe(true);
+    expect(await fs.pathExists(path.join(tempDir, '.agents', 'skills', 'antislop', 'SKILL.md'))).toBe(true);
+    expect(await fs.pathExists(path.join(tempDir, '.agents', 'skills', 'antislop-ui', 'SKILL.md'))).toBe(true);
 
     const manifestManager = new ManifestManager(tempDir);
     const manifest = await manifestManager.load();
@@ -60,14 +65,16 @@ describe('initCommand', () => {
     expect(Object.keys(manifest2?.files || {})).toEqual(Object.keys(manifest1?.files || {}));
   });
 
-  it('selectively installs firebase and api skills when requested', async () => {
+  it('selectively installs firebase, api, cinematic-ui, and taste-skill when requested', { timeout: 60000 }, async () => {
     await initCommand(tempDir, {
       interactive: false,
-      skills: 'firebase-engineering,api-integration',
+      skills: 'firebase-engineering,api-integration,cinematic-ui,taste-skill',
       force: true
     });
 
     expect(await fs.pathExists(path.join(tempDir, '.agents', 'skills', 'firebase-engineering', 'SKILL.md'))).toBe(true);
     expect(await fs.pathExists(path.join(tempDir, '.agents', 'skills', 'api-integration', 'SKILL.md'))).toBe(true);
+    expect(await fs.pathExists(path.join(tempDir, '.agents', 'skills', 'cinematic-ui', 'SKILL.md'))).toBe(true);
+    expect(await fs.pathExists(path.join(tempDir, '.agents', 'skills', 'taste-skill', 'SKILL.md'))).toBe(true);
   });
 });
