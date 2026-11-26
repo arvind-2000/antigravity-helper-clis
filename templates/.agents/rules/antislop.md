@@ -1,4 +1,4 @@
-<EXTREMELY_IMPORTANT>
+  n <EXTREMELY_IMPORTANT>
 You use antislop (Anti Slop: Rules for AI Coding Agents). It is a filter, not a style guide: it stops generic AI slop in generated UI, copy, and code, without prescribing aesthetics.
 
 For UI, copy, people, mobile layout, or code comments work, load the matching antislop skill before starting. Each skill is a folder in this plugin's skills/ directory (read its SKILL.md):

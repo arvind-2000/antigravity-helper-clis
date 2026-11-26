@@ -24,7 +24,14 @@ export async function skillAddCommand(skillNames: string[], options: { force?: b
   }
 
   const allBundledSkills = await templateManager.getBundledSkills();
-  const validSkills = allBundledSkills.filter(s => skillNames.includes(s.name));
+  const expandedSkillNames = new Set(skillNames);
+  if (expandedSkillNames.has('antislop')) {
+    allBundledSkills
+      .filter(s => s.name === 'antislop' || s.name.startsWith('antislop-'))
+      .forEach(s => expandedSkillNames.add(s.name));
+  }
+
+  const validSkills = allBundledSkills.filter(s => expandedSkillNames.has(s.name));
 
   if (validSkills.length === 0) {
     Logger.error(`None of the specified skills were found in bundled templates: ${skillNames.join(', ')}`);
@@ -33,9 +40,7 @@ export async function skillAddCommand(skillNames: string[], options: { force?: b
 
   Logger.header(`Adding ${validSkills.length} skill(s) to project: ${validSkills.map(s => s.name).join(', ')}`);
 
-  const newManifestEntries: Record<string, ManifestFileEntry> = {};
-  let installedCount = 0;
-  let skippedCount = 0;
+  const filesToInstall: Array<{ relativePath: string; fullPath: string }> = [];
   let hasUiUx = false;
 
   for (const skill of validSkills) {
@@ -44,54 +49,70 @@ export async function skillAddCommand(skillNames: string[], options: { force?: b
     }
 
     const files = await templateManager.collectTemplateFiles(path.join('.agents', 'skills', skill.name));
-    for (const file of files) {
-      const diff = await ConflictResolver.evaluateFile(
+    filesToInstall.push(...files);
+  }
+
+  if (expandedSkillNames.has('antislop')) {
+    const antislopRule = path.join(templateManager.getAgentsTemplatesRoot(), 'rules', 'antislop.md');
+    if (await fs.pathExists(antislopRule)) {
+      filesToInstall.push({
+        relativePath: '.agents/rules/antislop.md',
+        fullPath: antislopRule
+      });
+    }
+  }
+
+  const newManifestEntries: Record<string, ManifestFileEntry> = {};
+  let installedCount = 0;
+  let skippedCount = 0;
+
+  for (const file of filesToInstall) {
+    const diff = await ConflictResolver.evaluateFile(
+      projectRoot,
+      file.relativePath,
+      file.fullPath,
+      existingManifest
+    );
+
+    let shouldInstall = true;
+    let createBackup = false;
+
+    if (diff.status === 'USER_MODIFIED') {
+      if (options.force) {
+        shouldInstall = true;
+        createBackup = true;
+      } else if (process.stdin.isTTY) {
+        const action = await select({
+          message: `Customization detected in "${diff.relativePath}". What would you like to do?`,
+          choices: [
+            { name: 'Keep existing customized file (skip)', value: 'skip' },
+            { name: 'Backup and overwrite with bundled template', value: 'backup' },
+            { name: 'Overwrite directly', value: 'overwrite' }
+          ]
+        });
+
+        if (action === 'skip') {
+          shouldInstall = false;
+          skippedCount++;
+        } else if (action === 'backup') {
+          createBackup = true;
+        }
+      } else {
+        Logger.warn(`Skipping user-customized file: ${diff.relativePath}`);
+        shouldInstall = false;
+        skippedCount++;
+      }
+    }
+
+    if (shouldInstall) {
+      const result = await FileInstaller.installTemplate(
         projectRoot,
         file.relativePath,
         file.fullPath,
-        existingManifest
+        createBackup
       );
-
-      let shouldInstall = true;
-      let createBackup = false;
-
-      if (diff.status === 'USER_MODIFIED') {
-        if (options.force) {
-          shouldInstall = true;
-          createBackup = true;
-        } else if (process.stdin.isTTY) {
-          const action = await select({
-            message: `Customization detected in "${diff.relativePath}". What would you like to do?`,
-            choices: [
-              { name: 'Keep existing customized file (skip)', value: 'skip' },
-              { name: 'Backup and overwrite with bundled template', value: 'backup' },
-              { name: 'Overwrite directly', value: 'overwrite' }
-            ]
-          });
-
-          if (action === 'skip') {
-            shouldInstall = false;
-            skippedCount++;
-          } else if (action === 'backup') {
-            createBackup = true;
-          }
-        } else {
-          Logger.warn(`Skipping user-customized file: ${diff.relativePath}`);
-          shouldInstall = false;
-          skippedCount++;
-        }
-      }
-
-      if (shouldInstall) {
-        const result = await FileInstaller.installTemplate(
-          projectRoot,
-          file.relativePath,
-          file.fullPath,
-          createBackup
-        );
-        newManifestEntries[diff.relativePath] = result.entry;
-        installedCount++;
-      }
+      newManifestEntries[diff.relativePath] = result.entry;
+      installedCount++;
     }
   }
 
