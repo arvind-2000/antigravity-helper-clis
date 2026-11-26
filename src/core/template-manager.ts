@@ -122,6 +122,111 @@ export const KNOWN_SKILLS: SkillDefinition[] = [
     defaultSelected: true,
     requiredForCore: true
   },
+  {
+    name: 'brainstorming',
+    category: 'core',
+    description: 'Superpowers: explore intent, requirements, and design before creative implementation',
+    defaultSelected: true,
+    requiredForCore: true
+  },
+  {
+    name: 'diagnosing-superpowers',
+    category: 'core',
+    description: 'Superpowers: diagnose session failures, skipped skills, and build bug reports',
+    defaultSelected: true,
+    requiredForCore: true
+  },
+  {
+    name: 'dispatching-parallel-agents',
+    category: 'core',
+    description: 'Superpowers: coordinate independent parallel tasks without shared state',
+    defaultSelected: true,
+    requiredForCore: true
+  },
+  {
+    name: 'executing-plans',
+    category: 'core',
+    description: 'Superpowers: execute implementation plans inline with checkpoints',
+    defaultSelected: true,
+    requiredForCore: true
+  },
+  {
+    name: 'finishing-a-development-branch',
+    category: 'core',
+    description: 'Superpowers: verify tests and decide merge, PR, or cleanup for completed branches',
+    defaultSelected: true,
+    requiredForCore: true
+  },
+  {
+    name: 'receiving-code-review',
+    category: 'core',
+    description: 'Superpowers: evaluate code review feedback with technical rigor before applying',
+    defaultSelected: true,
+    requiredForCore: true
+  },
+  {
+    name: 'requesting-code-review',
+    category: 'core',
+    description: 'Superpowers: request structured code review before merging completed tasks',
+    defaultSelected: true,
+    requiredForCore: true
+  },
+  {
+    name: 'subagent-driven-development',
+    category: 'core',
+    description: 'Superpowers: execute implementation plans using isolated subagents',
+    defaultSelected: true,
+    requiredForCore: true
+  },
+  {
+    name: 'systematic-debugging',
+    category: 'core',
+    description: 'Superpowers: root-cause debugging methodology before proposing fixes',
+    defaultSelected: true,
+    requiredForCore: true
+  },
+  {
+    name: 'test-driven-development',
+    category: 'core',
+    description: 'Superpowers: red-green-refactor TDD workflow before writing implementation code',
+    defaultSelected: true,
+    requiredForCore: true
+  },
+  {
+    name: 'using-git-worktrees',
+    category: 'core',
+    description: 'Superpowers: isolate feature work using git worktrees before executing plans',
+    defaultSelected: true,
+    requiredForCore: true
+  },
+  {
+    name: 'using-superpowers',
+    category: 'core',
+    description: 'Superpowers: core skill discovery and invocation protocol for every session',
+    defaultSelected: true,
+    requiredForCore: true
+  },
+  {
+    name: 'verification-before-completion',
+    category: 'core',
+    description: 'Superpowers: require fresh verification command output before claiming completion',
+    defaultSelected: true,
+    requiredForCore: true
+  },
+  {
+    name: 'writing-plans',
+    category: 'core',
+    description: 'Superpowers: author detailed multi-step implementation plans from specs',
+    defaultSelected: true,
+    requiredForCore: true
+  },
+  {
+    name: 'writing-skills',
+    category: 'core',
+    description: 'Superpowers: create, edit, and verify agent skills before deployment',
+    defaultSelected: true,
+    requiredForCore: true
+  },
 
   // 2. Backend & Network Skills (2)
   {

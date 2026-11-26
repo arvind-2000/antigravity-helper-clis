@@ -30,6 +30,26 @@ export async function skillAddCommand(skillNames: string[], options: { force?: b
       .filter(s => s.name === 'antislop' || s.name.startsWith('antislop-'))
       .forEach(s => expandedSkillNames.add(s.name));
   }
+  if (expandedSkillNames.has('superpowers')) {
+    const superpowersGroup = [
+      'brainstorming',
+      'diagnosing-superpowers',
+      'dispatching-parallel-agents',
+      'executing-plans',
+      'finishing-a-development-branch',
+      'receiving-code-review',
+      'requesting-code-review',
+      'subagent-driven-development',
+      'systematic-debugging',
+      'test-driven-development',
+      'using-git-worktrees',
+      'using-superpowers',
+      'verification-before-completion',
+      'writing-plans',
+      'writing-skills'
+    ];
+    superpowersGroup.forEach(name => expandedSkillNames.add(name));
+  }
 
   const validSkills = allBundledSkills.filter(s => expandedSkillNames.has(s.name));
 

@@ -41,6 +41,8 @@ describe('initCommand', () => {
     expect(await fs.pathExists(path.join(tempDir, '.agents', 'skills', 'graphify', 'references', 'query.md'))).toBe(true);
     expect(await fs.pathExists(path.join(tempDir, '.agents', 'skills', 'antislop', 'SKILL.md'))).toBe(true);
     expect(await fs.pathExists(path.join(tempDir, '.agents', 'skills', 'antislop-ui', 'SKILL.md'))).toBe(true);
+    expect(await fs.pathExists(path.join(tempDir, '.agents', 'skills', 'brainstorming', 'SKILL.md'))).toBe(true);
+    expect(await fs.pathExists(path.join(tempDir, '.agents', 'skills', 'using-superpowers', 'SKILL.md'))).toBe(true);
 
     const manifestManager = new ManifestManager(tempDir);
     const manifest = await manifestManager.load();

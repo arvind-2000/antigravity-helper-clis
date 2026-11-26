@@ -34,7 +34,7 @@
 
 When developing multiple Flutter applications with Antigravity, manually copying rules, prompt instructions, workflows, and skills across repositories is repetitive and error-prone. 
 
-**Flutter Agent Kit** packages your canonical Antigravity Flutter/Dart engineering configuration into a reusable, self-contained CLI. The CLI bundles all **27 workspace skills**, project architecture rules, feature workflows, and global engineering guidelines—enabling one-command initialization, automated updates, and complete health audits.
+**Flutter Agent Kit** packages your canonical Antigravity Flutter/Dart engineering configuration into a reusable, self-contained CLI. The CLI bundles all **42 workspace skills**, project architecture rules, feature workflows, and global engineering guidelines—enabling one-command initialization, automated updates, and complete health audits.
 
 ---
 
@@ -286,7 +286,7 @@ This manifest enables exact three-way diff evaluation:
 - `templates/.agents/workflows/`:
   - `create-feature.md`: 5-step structured feature development lifecycle (Analyze, Plan, Implement, Verify, Report).
 
-### 2. Core Flutter Engineering Skills (16 skills)
+### 2. Core Flutter Engineering Skills (31 skills)
 - **`antislop`** (2 files): Core anti-slop filter to stop generic AI slop in UI, copy, and code.
 - **`antislop-code`** (1 file): Code comment hygiene: remove generic AI-slop comments while preserving useful ones.
 - **`antislop-copywriting`** (1 file): Anti-AI-writing copy and text filter for headlines, tone, and CTAs.
@@ -303,6 +303,21 @@ This manifest enables exact three-way diff evaluation:
 - **`flutter-testing`** (1 file): Unit, widget, golden, mockito, and integration test architectures.
 - **`git-code-review`** (1 file): PR conventions, code review checklists, architecture compliance audits.
 - **`graphify`** (10 files): Knowledge graph builder & query tool for codebase architecture, god nodes, and relationships.
+- **`brainstorming`** (8 files): Superpowers: explore intent, requirements, and design before creative implementation.
+- **`diagnosing-superpowers`** (20 files): Superpowers: diagnose session failures, skipped skills, and build bug reports.
+- **`dispatching-parallel-agents`** (1 file): Superpowers: coordinate independent parallel tasks without shared state.
+- **`executing-plans`** (3 files): Superpowers: execute implementation plans inline with checkpoints.
+- **`finishing-a-development-branch`** (1 file): Superpowers: verify tests and decide merge, PR, or cleanup for completed branches.
+- **`receiving-code-review`** (1 file): Superpowers: evaluate code review feedback with technical rigor before applying.
+- **`requesting-code-review`** (2 files): Superpowers: request structured code review before merging completed tasks.
+- **`subagent-driven-development`** (15 files): Superpowers: execute implementation plans using isolated subagents.
+- **`systematic-debugging`** (6 files): Superpowers: root-cause debugging methodology before proposing fixes.
+- **`test-driven-development`** (2 files): Superpowers: red-green-refactor TDD workflow before writing implementation code.
+- **`using-git-worktrees`** (1 file): Superpowers: isolate feature work using git worktrees before executing plans.
+- **`using-superpowers`** (8 files): Superpowers: core skill discovery and invocation protocol for every session.
+- **`verification-before-completion`** (1 file): Superpowers: require fresh verification command output before claiming completion.
+- **`writing-plans`** (1 file): Superpowers: author detailed multi-step implementation plans from specs.
+- **`writing-skills`** (10 files): Superpowers: create, edit, and verify agent skills before deployment.
 
 ### 3. Backend & Network Skills (2 skills)
 - **`firebase-engineering`** (1 file): Firebase Auth, Firestore security rules, Cloud Functions patterns.

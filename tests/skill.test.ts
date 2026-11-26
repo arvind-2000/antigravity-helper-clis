@@ -36,4 +36,30 @@ describe('skillAddCommand', () => {
     }
     expect(await fs.pathExists(path.join(tempDir, '.agents', 'rules', 'antislop.md'))).toBe(true);
   });
+
+  it('installs all 15 superpowers skills when adding superpowers', async () => {
+    await skillAddCommand(['superpowers'], { force: true });
+
+    const expectedSkills = [
+      'brainstorming',
+      'diagnosing-superpowers',
+      'dispatching-parallel-agents',
+      'executing-plans',
+      'finishing-a-development-branch',
+      'receiving-code-review',
+      'requesting-code-review',
+      'subagent-driven-development',
+      'systematic-debugging',
+      'test-driven-development',
+      'using-git-worktrees',
+      'using-superpowers',
+      'verification-before-completion',
+      'writing-plans',
+      'writing-skills'
+    ];
+
+    for (const skill of expectedSkills) {
+      expect(await fs.pathExists(path.join(tempDir, '.agents', 'skills', skill, 'SKILL.md'))).toBe(true);
+    }
+  });
 });
